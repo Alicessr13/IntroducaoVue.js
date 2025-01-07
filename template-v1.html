@@ -1,0 +1,23 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> <!--importando vue.js no projeto-->
+
+<div id="app">
+    <p>{{titulo}}</p>
+    <p>{{ saudacao }}</p>
+</div>
+
+<script>
+    //instanciando vue a partir de uma função construtora
+    new Vue({
+        //parametros para criação da instancia do vue
+        el:'#app', //elementos que queremos que a instancia passe a controlar, selecionando o id app
+        data:{ //atributo data que é um objeto com atributos para colocar no html
+            titulo: 'Usando VueJs!'
+        },
+        methods:{
+            //função anonima associada ao atributo saudacao do objeto que representa os metodos
+            saudacao: function (){
+                return 'Boa semana!'
+            }
+        }
+    })
+</script>
