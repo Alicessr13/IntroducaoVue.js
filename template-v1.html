@@ -1,8 +1,9 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> <!--importando vue.js no projeto-->
 
 <div id="app">
-    <p>{{titulo}}</p>
-    <p>{{ saudacao }}</p>
+    <p>{{ titulo }}</p>
+    <p>{{ saudacao() }}</p> <!--tanto atributo como o que vai ser retornado em função e interpretado/interpolado dentro do padrão {{}} 
+                            tem que ser retornado em string ja que o html tem padrão textual, exemplo numeros são convertidos para string-->
 </div>
 
 <script>
@@ -18,6 +19,7 @@
             saudacao: function (){
                 return 'Boa semana!'
             }
+            //o vue cria acessos diretos quando utiliza template
         }
     })
 </script>
