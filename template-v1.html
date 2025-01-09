@@ -4,6 +4,8 @@
     <p>{{ titulo }}</p>
     <p>{{ saudacao() }}</p> <!--tanto atributo como o que vai ser retornado em função e interpretado/interpolado dentro do padrão {{}} 
                             tem que ser retornado em string ja que o html tem padrão textual, exemplo numeros são convertidos para string-->
+    <a v-bind:href="link">Google</a>
+    <!--diretiva v-bind faz com que o valor dentro das chaves seja interpretado pelo vue-->
 </div>
 
 <script>
@@ -12,12 +14,15 @@
         //parametros para criação da instancia do vue
         el:'#app', //elementos que queremos que a instancia passe a controlar, selecionando o id app
         data:{ //atributo data que é um objeto com atributos para colocar no html
-            titulo: 'Usando VueJs!'
+            titulo: 'Usando VueJs!',
+            link: 'http://google.com.br'
         },
         methods:{
             //função anonima associada ao atributo saudacao do objeto que representa os metodos
             saudacao: function (){
-                return 'Boa semana!'
+                //return 'Boa semana!'
+                //para acessar o titulo dentro da instancia do vue coloca o this (faz um 'proxy' e assim vai acessar o valor dentro de data), this também acessa função
+                return this.titulo 
             }
             //o vue cria acessos diretos quando utiliza template
         }
