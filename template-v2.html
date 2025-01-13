@@ -2,19 +2,36 @@
 
 <div id="app">
     <p>{{contador}}</p>
-    <button v-on:click="somar">Somar 1</button>
+    <button v-on:click="somar(5, $event)">Somar 1</button>
     <!--v-on = diretiva que intercepta os eventos, tipo do evento e o que vai fazer-->
+    <!--ao passar um parametro para um metodo ele não recebe mais o evento padrão, 
+    para ele receber o parametro e o evento padrão precisa usar a palavra reservada $event (no script pode ser outro nome)
+    no vue usa o $ para algumas palavras reservadas
+    -->
+
+    <p v-on:mousemove="atualizarXY">Mouse: {{x}} e {{y}}</p>
 </div>
 
 <script>
     new Vue({
         el: '#app',
         data: {
-            contador: 0
+            contador: 0,
+            x: 0,
+            y: 0,
         },
         methods: {
-            somar() {
-                this.contador++;
+            somar(passo, event) {
+                //sempre que um evento e executado a variavel evento é passada
+                //console.log(event);
+                console.log(passo, event);
+                this.contador += passo;
+            },
+            atualizarXY(e){
+                //sempre que um evento e executado a variavel evento é passada
+                console.log(e);
+                this.x = e.clientX;
+                this.y = e.clientY;
             }
         }
     })
