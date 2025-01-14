@@ -5,7 +5,6 @@
     <button v-on:click="contador2++">Aumentar contador 2</button>
     <button v-on:click="diminuir">Diminuir</button>
     <p>Contador: {{ contador }} | {{ contador2 }}</p>
-    <!--<p>Resultado: {{ resultado }} </p>-->
     <p>Resultado: {{ resultado }} </p>
 </div>
 
@@ -21,9 +20,20 @@
             //ao clicar tanto no botão 'aumentar' e no 'aumentar contador 2' ele chama a função mesmo não sendo necessário no 'aumentar contador 2'
             //ao colocar como computed ele somente chama a função ao clicar em 'aumentar', ou seja somente quando é necessário
             //não chama mais como metodo mas como um aributo normal
-            resultado(){
+            resultado(){ //propriedade computed é sincrona (chama a propriedade obrigatóriamente retorna um valor)
                 console.log('Chamando o metodo computed resultado');
                 return this.contador >= 5 ? 'Maior ou igual a 5' : 'Menor que 5';
+            }
+        },
+        watch: {
+            //watch monitora as mudanças, o nome precisa ser o mesmo do que você quer monitorar
+            //sempre que a variavel mudar vai chamar
+            contador(novo, antigo){
+                //recebe o novo e o antigo valor
+                console.log(novo, antigo);
+                setTimeout(()=>{ //sempre que o contador mudar vai chamar 
+                    this.contador = 0; //depois de 2 segundos zera o contador
+                }, 2000)
             }
         },
         methods: {

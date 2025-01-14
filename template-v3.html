@@ -12,6 +12,14 @@
     <!--inicializar o input a partir do valor que está dentro de titulo-->
 
     <!-- Com o v-model, qualquer alteração feita no elemento do DOM é automaticamente refletida na variável vinculada no estado do componente, e vice-versa -->
+     <hr>
+     <!--forma reduzida-->
+     <p> {{ contador2 }} </p>
+     <button @click="somar2">Somar 1</button>
+     <!-- @ = v-on-->
+     <br><br>
+     <input type="text" name="" id="" :value="contador2">
+     <!-- : = v-bind -->
 </div>
 
 <script>
@@ -20,10 +28,14 @@
         data: {
             contador: 0,
             titulo: 'Usando vue',
+            contador2: 0
         },
         methods: {
             somar() {
                 this.contador ++;
+            },
+            somar2() {
+                this.contador2 ++;
             },
         },
     })
