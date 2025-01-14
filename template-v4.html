@@ -1,0 +1,44 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <button v-on:click="aumentar">Aumentar</button>
+    <button v-on:click="contador2++">Aumentar contador 2</button>
+    <button v-on:click="diminuir">Diminuir</button>
+    <p>Contador: {{ contador }} | {{ contador2 }}</p>
+    <!--<p>Resultado: {{ resultado }} </p>-->
+    <p>Resultado: {{ resultado }} </p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            //resultado: ''.
+            contador2: 0
+        },
+        computed:{ 
+            //ao clicar tanto no botão 'aumentar' e no 'aumentar contador 2' ele chama a função mesmo não sendo necessário no 'aumentar contador 2'
+            //ao colocar como computed ele somente chama a função ao clicar em 'aumentar', ou seja somente quando é necessário
+            //não chama mais como metodo mas como um aributo normal
+            resultado(){
+                console.log('Chamando o metodo computed resultado');
+                return this.contador >= 5 ? 'Maior ou igual a 5' : 'Menor que 5';
+            }
+        },
+        methods: {
+            aumentar() {
+                this.contador ++;
+                //this.resultado = this.contador >= 5 ? 'Maior ou igual a 5' : 'Menor que 5'
+            },
+            diminuir() {
+                this.contador --;
+                //this.resultado = this.contador >= 5 ? 'Maior ou igual a 5' : 'Menor que 5'
+            },
+            /*resultado(){
+                console.log('Chamando o metodo resultado');
+                return this.contador >= 5 ? 'Maior ou igual a 5' : 'Menor que 5';
+            }*/
+        },
+    })
+</script>

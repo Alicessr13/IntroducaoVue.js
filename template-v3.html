@@ -1,0 +1,30 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{contador * 2}}</p>
+    <p>{{contador > 10 ? 'Maior do que 10' : 'Menor do que 10'}}</p>
+    <!--expressões de uma linha só podem ser colocadas entre {{}} que o vue vai interpretar-->
+    <button v-on:click="somar">Somar 1</button>
+
+    <p> {{ titulo }} </p>
+    <input type="text" v-model="titulo"> 
+    <!-- <input type="text" v-bind:value="titulo" v-on:input="titulo = $event.target.value"> faz o mesmo do v-model-->
+    <!--inicializar o input a partir do valor que está dentro de titulo-->
+
+    <!-- Com o v-model, qualquer alteração feita no elemento do DOM é automaticamente refletida na variável vinculada no estado do componente, e vice-versa -->
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            titulo: 'Usando vue',
+        },
+        methods: {
+            somar() {
+                this.contador ++;
+            },
+        },
+    })
+</script>
