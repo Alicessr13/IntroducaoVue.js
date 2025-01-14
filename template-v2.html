@@ -9,7 +9,21 @@
     no vue usa o $ para algumas palavras reservadas
     -->
 
-    <p v-on:mousemove="atualizarXY">Mouse: {{x}} e {{y}}</p>
+    <p v-on:mousemove="atualizarXY">
+        Mouse: {{x}} e {{y}}
+        <span v-on:mousemove.stop="">Parar aqui</span>
+    </p>
+
+    <a v-on:click.prevent="" href="http://google.com">Google</a>
+    <!--previne o comportamento padrão v-on:click.prevent="", não acessa o google pelo link-->
+
+    <br>
+
+    <input type="text" name="" id="" v-on:keyup.enter.alt="exibirAlerta">
+    <!--v-on:keyup="" ao clicar e soltar uma tecla chama o evento associodo-->
+    <!--v-on:keyup.enter="" ao clicar em uma tecla especifica-->
+    <!--v-on:keyup.enter.alt="" ao clicar em mais de uma tecla-->
+
 </div>
 
 <script>
@@ -32,7 +46,18 @@
                 console.log(e);
                 this.x = e.clientX;
                 this.y = e.clientY;
+            },
+            parar(e){
+                e.stopPropagation();
+                //parando a propagação do evento, na area do span não vai ter o evento, v-on:mousemove.stop faz o mesmo
+            },
+            naoNavegar(event){
+                event.preventDefault();
+                //mesmo comportamento que v-on:click.prevent=""
+            },
+            exibirAlerta(){
+                alert('Alerta!!!')
             }
-        }
+        },
     })
 </script>
