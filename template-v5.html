@@ -1,0 +1,88 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<style>
+    .caixas {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .demo {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(218, 159, 210);
+    }
+
+    .c1 {
+        background-color: rgb(117, 34, 211);
+    }
+
+    .cor-2 {
+        background-color: rgb(216, 35, 171);
+    }
+
+    .c3 {
+        background-color: rgb(179, 23, 62);
+    }
+
+    .girar {
+        transform: rotate(45deg);
+    }
+</style>
+
+<div id="app">
+    <div class="caixas">
+        <div class="demo" :class="estilo1" @click="aplicarC1 = !aplicarC1"></div>
+        <!-- :class="{c1: aplicarC1}" aplica a classe, primeiro valor nome da classe e o segundo um valor de verdadeiro ou falso para aplicar ou não a classe-->
+        <!-- @click="aplicarC1 = !aplicarC1" ao clicar vai inverter o valor-->
+        <!-- :class="{c1: aplicarC1, c3: !aplicarC1}" @click="aplicarC1 = !aplicarC1" alterna entre c1 e c3-->
+
+        <div class="demo" :class="{'cor-2': aplicarC2}" @click="aplicarC2 = !aplicarC2"></div>
+        <!-- 'cor-2' colocado em aspas senão gera errado devido ao - no nome-->
+
+        <div class="demo" :class="[classeCSS, {girar: aplicarGirar}]"></div>
+        <!--aplicando mais de uma classe também pode ser [classeCSS, 'girar']-->
+
+    </div>
+    <br>
+    <input type="text" v-model="classeCSS">
+    <!-- alterando a classe css pelo input-->
+    <hr>
+    <!--alterando a cor por style e pelo input-->
+    <div class="caixas">
+        <div class="demo" :style="{'background-color': cor}"></div>
+        <div class="demo" :style="[meuEstilo, {height: altura}]"></div>
+    </div>
+    <br>
+    <input type="text" v-model="cor">
+    <input type="text" v-model="largura">
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            aplicarC1: false,
+            aplicarC2: false,
+            classeCSS: 'c1',
+            aplicarGirar: true,
+            cor: 'blue',
+            largura: 100,
+            altura: 200
+        },
+        computed: {
+            estilo1() {
+                //alterna entre c1 e c3
+                return {
+                    c1: this.aplicarC1,
+                    c3: !this.aplicarC1
+                }
+            },
+            meuEstilo() {
+                return {
+                    backgroundColor: this.cor,
+                    width: this.largura + 'px'
+                }
+            }
+        }
+    })
+</script>
