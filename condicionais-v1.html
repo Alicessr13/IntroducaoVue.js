@@ -1,0 +1,31 @@
+<meta charset="utf-8">
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <!--ao usar v-if o elemento que não entra na condição não aparece na tela nem no console-->
+    <template v-if="logado"> <!--template não gera tag no html, somente aparece quando é renderizado. exemplo ao abrir o console não tem nada envolvendo os 2 <p>-->
+        <p>Usuário logado: {{ nome }}</p>
+        <p>Perfil: Admin</p>
+    </template>
+    <p v-else-if="anonimo">Navegando como anonimo</p> <!--se o primeiro if e o segundo estiver false cai no else-->
+    <p v-else>Nenhum usuário logado</p>
+    <!-- v-else sem condição só funcionou se tiver um if no elemento anterior-->
+
+    <button @click="logado = !logado"> <!--logado recebe a negação de logado por isso alterna-->
+        {{ logado ? 'Sair' : 'Entrar' }}
+    </button>
+
+    <input type="checkbox" v-model="anonimo">
+   
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            nome: 'Alice',
+            logado: false,
+            anonimo: true
+        }
+    })
+</script>
