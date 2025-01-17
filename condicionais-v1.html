@@ -16,7 +16,13 @@
     </button>
 
     <input type="checkbox" v-model="anonimo">
-   
+    
+    <hr>
+    <footer v-show="logado">Desenvolvido para você</footer>
+    <!--v-show aplica um estilo css para que o elemento não apareça mais, 
+    quando precisa de mais segurança e melhor retirar o elemento do que usar v-show porque ele aparece no console, 
+    true exibe, false esconde-->
+    <footer v-show="!logado">Desenvolvido para você que é desconhecido</footer>
 </div>
 
 <script>
