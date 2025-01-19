@@ -4,16 +4,32 @@
 <div id="app">
     <ul> <!--lista não ordenada-->
         <!--v-for = diretiva do laço for, tem que colocar na tag que vai ser repetida-->
-        <li v-for="(cor, i) in cores"> {{cor}} - {{i}}</li>
+        <li v-for="(cor, i) in cores" :key="i"> {{cor}} - {{i}}</li>
         <!--primeiro a variavel que vai receber as cores depois o indice-->
     </ul>
+    <button @click="cores.push('branca')">Adicionar</button>
+    <!-- key = com o key o vue consegue rastrear a identidade de cada item e assim consegue reutilizar e ordenar os elementos existentes-->
 
     <hr>
 
-    <template v-for="(cor, i) in cores"> <!--v-for apenas repete os elementos, div criaria várias divs-->
+    <template v-for="(cor, i) in cores"> <!--template apenas repete os elementos, div criaria várias divs-->
         <h1>{{cor}}</h1>
         <h2>{{i}}</h2>
     </template>
+
+    <hr>
+
+    <ul>
+        <li v-for="pessoa in pessoas"> <!-- pessoas array de objetos -->
+            <!--{{ pessoa.nome }}--> <!--resultado imprime o nome-->
+            <div v-for="(valor, chave, index) in pessoa"> <!--primeiro o valor exemplo alice, depois chave exemplo nome, depois indice exemplo = 0-->
+                {{ chave }} = {{ valor }} ({{ index}})
+            </div>
+        </li>
+    </ul>
+
+    <hr>
+    <span v-for="n in 10">{{n}}</span> <!--percorrendo números resultado: 12345678910-->
 
 </div>
 
