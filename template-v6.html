@@ -12,28 +12,33 @@
 </div>
 
 <script>
-    //múltiplas instâncias
-    new Vue({
+    //múltiplas instâncias, instancia 1 acessando a 2 e instancia 2 acessando a primeira (obs: se tem duas instancias vue que interagem entre si e melhor criar um só)
+    const vm1 = new Vue({
         el: '#app1',
         data: {
             titulo1: 'Teste 1'
         },
         methods:{
             alterar(){
-                this.titulo1 += '!!!!'
+                vm2.titulo2 += '!!!!'
             }
         }
     })
 
-    new Vue({
+    const vm2 = new Vue({
         el: '#app2',
         data: {
             titulo2: 'Teste 2'
         },
         methods:{
             alterar(){
-                this.titulo2 += '????'
+                vm1.titulo1 += '????'
             }
         }
     })
+
+    //acessando a instancia e alterando o dado direto pelo javascript
+    setTimeout(()=>{
+        v1.titulo1 = 'Alterado pelo timer'
+    }, 2000);
 </script>
